@@ -1,5 +1,11 @@
 {
-  "dependencies": {
-    "16": "^0.0.2"
+  "name": "tomato-leaf-disease-detection",
+  "version": "1.0.0",
+  "description": "Tomato leaf disease detection using CNN + FastAPI + React",
+  "private": true,
+  "scripts": {
+    "start:api": "cd api && uvicorn main:app --reload --host 0.0.0.0 --port 8000",
+    "start:frontend": "cd frontend && npm start",
+    "install:frontend": "cd frontend && npm install"
   }
 }
