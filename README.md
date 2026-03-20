@@ -18,7 +18,6 @@ A full-stack deep learning application that classifies tomato plant leaf disease
 - [API Reference](#api-reference)
 - [Model Information](#model-information)
 - [Common Errors & Fixes](#common-errors--fixes)
-- [Bug Fixes Applied](#bug-fixes-applied)
 
 ---
 
@@ -385,23 +384,3 @@ venv\Scripts\activate
 # macOS/Linux
 source venv/bin/activate
 ```
-
----
-
-## Bug Fixes Applied
-
-| File | Bug | Fix |
-|---|---|---|
-| `api/main-tf-serving.py` | Endpoint pointed to `potatoes_model` instead of `tomatoes_model` | Corrected model name |
-| `api/main.py` | `host='localhost'` blocks external access | Changed to `host='0.0.0.0'` |
-| `api/main.py` | No image validation — any file type accepted | Added `content_type` check, returns HTTP 400 for non-images |
-| `api/main.py` | Images not resized before prediction | Added resize to `256×256` and RGB conversion |
-| `api/main-tf-serving.py` | No error handling for TF Serving failures | Added `try/except` with HTTP 503/502 responses |
-| `api/requirements.txt` | `tensorflow-serving-api==2.5.0` conflicts with `tensorflow==2.15.0` | Removed conflicting package; added `requests` |
-| `frontend/src/home.js` | `<CardMedia component="image">` is invalid HTML | Corrected to `component="img"` |
-| `frontend/src/home.js` | Import `image` shadowed the `image` state variable | Renamed import to `bgImage` |
-| `frontend/src/home.js` | `require("axios")` used in module scope | Replaced with `import axios from "axios"` |
-| `frontend/src/home.js` | No error handling for failed API calls | Added `try/catch` with visible error message |
-| `frontend/src/home.js` | Object URL never revoked — memory leak | Added `URL.revokeObjectURL()` cleanup in `useEffect` |
-| `frontend/package.json` | Package name was generic `"photo"` | Renamed to `tomato-leaf-disease-detection` |
-| `package.json` (root) | Contained `"16": "^0.0.2"` as a broken dependency | Replaced with proper metadata and npm scripts |
